@@ -3,7 +3,7 @@ import { downloadImage } from "../utils";
 
 export const handleDelete = async (_id,setAllPosts) => {
   try {
-    const response = await fetch(`https://ai-pic-project.onrender.com`, {
+    const response = await fetch(`https://ai-pic-project.onrender.com/api/v1/delete/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
