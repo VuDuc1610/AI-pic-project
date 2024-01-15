@@ -75,7 +75,6 @@ const CreatePost = () => {
 
         const data = await response.json();
         console.log(data);
-        console.log(form)
         navigate('/');
       } catch (err) {
         alert(err);
@@ -101,10 +100,9 @@ const CreatePost = () => {
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
+        <h1 className="font-extrabold text-[#222328] text-[32px]">CREATE</h1>
         <p className="mt-2 text-[#666e75] text-[16px] max-w[500px]">
-          Create imaginative and visually stunning images through DALL-E AI and
-          share them with the community
+          Create imaginative and visually stunning images using your creativity and save them in the collection!
         </p>
       </div>
       <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
@@ -113,7 +111,7 @@ const CreatePost = () => {
             LabelName="Your name"
             type="text"
             name="name"
-            placeholder="Duc"
+            placeholder="Ex: Eira"
             value={form.name}
             handleChange={handleChange}
           />
@@ -121,7 +119,7 @@ const CreatePost = () => {
             LabelName="Prompt"
             type="text"
             name="prompt"
-            placeholder="teddy bears shopping for groceries in Japan, ukiyo-e"
+            placeholder="Ex: A student studies in Art and Music Library"
             value={form.prompt}
             handleChange={handleChange}
             isSurpriseMe
@@ -161,14 +159,13 @@ const CreatePost = () => {
         </div>
         <div className="mt-10">
           <p className="mt-2 text-[#666e75] text-[14px]">
-            Once you have created the image you want, you can share it with
-            others in the community
+            Once you have created the image you want, you can save it in the collection
           </p>
           <button
             type="submit"
             className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
           >
-            {loading ? "Sharing..." : "Share with the community"}
+            {loading ? "Saving..." : "Save"}
           </button>
         </div>
       </form>

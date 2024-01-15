@@ -1,7 +1,30 @@
 import { download } from "../assets";
 import { downloadImage } from "../utils";
 
-const Card = ({ _id, name, prompt, photo }) => {
+export const handleDelete = async (_id,setAllPosts) => {
+  try {
+    const response = await fetch(`http://localhost:8080/api/v1/delete/${_id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.text();
+    
+    if(response.ok) {
+      console.log(data);
+      setAllPosts((prevPosts) => prevPosts.filter(post => post._id !== _id));
+    } else {
+      console.error(data);
+    }
+  } catch (error) {
+    alert(error);
+    console.log('Error:', error);
+  }
+};
+
+const Card = ({ _id, name, prompt, photo,allPosts,setAllPosts }) => {
   return (
     <div className="rounded-xl group relative shadow-card hover:show-cardhover card">
       <img
@@ -25,6 +48,11 @@ const Card = ({ _id, name, prompt, photo }) => {
           >
             <img src={download} alt="download" className="w-6 h-6 object-contain invert" />
           </button>
+          <button 
+            type="button"
+            className="bg-black text-white border-white border-2 rounded-md px-2 py-2"
+            onClick={() => handleDelete(_id,setAllPosts)}
+          >Delete</button>
         </div>
       </div>
     </div>
